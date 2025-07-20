@@ -1,6 +1,7 @@
 from sqlalchemy.orm import registry
 
-table_registry = registry()
-Base = table_registry.generate_base()
+from .user_model import User as User
 
-from .user_model import User
+table_registry = registry()
+
+Base = table_registry.generate_base()

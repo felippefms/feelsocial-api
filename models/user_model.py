@@ -2,6 +2,7 @@ from datetime import datetime
 
 from sqlalchemy import func
 from sqlalchemy.orm import Mapped, mapped_column
+
 from . import table_registry
 
 
@@ -16,5 +17,9 @@ class User:
     banned: Mapped[bool] = mapped_column(init=False)
     confirmed_email: Mapped[bool] = mapped_column(init=False)
     banned_date: Mapped[datetime] = mapped_column(init=False)
-    created_at: Mapped[datetime] = mapped_column( init=False, server_default=func.now())
-    updated_at: Mapped[datetime] = mapped_column( init=False, server_default=func.now())
+    created_at: Mapped[datetime] = mapped_column(
+        init=False, server_default=func.now()
+    )
+    updated_at: Mapped[datetime] = mapped_column(
+        init=False, server_default=func.now(), onupdate=func.now()
+    )
