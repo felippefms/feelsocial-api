@@ -2,7 +2,7 @@ from http import HTTPStatus
 
 from fastapi import FastAPI
 
-from schemas.user_schema import UserPublic, UserSchema
+from .schemas.user_schema import UserPublic, UserSchema
 
 app = FastAPI(title='Feelsocial API')
 
