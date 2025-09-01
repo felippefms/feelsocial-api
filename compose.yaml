@@ -1,0 +1,25 @@
+services:
+  feelsocialdb:
+    image: postgres
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_DB: feelsocialdb
+      POSTGRES_PASSWORD: admin
+    ports:
+      - "5432:5432"
+
+  feelsocial_app:
+    image: feelsocial_app
+    entrypoint: ./entrypoint.sh
+    build: .
+    ports:
+      - "8000:8000"
+    depends_on:
+      - feelsocialdb
+    environment:
+      DATABASE_URL: postgresql+psycopg://postgres:admin@feelsocialdb:5432/feelsocialdb
+
+volumes:
+  pgdata:
