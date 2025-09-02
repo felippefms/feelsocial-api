@@ -17,3 +17,7 @@ class UserPublic(BaseModel):
     banned_date: datetime
     created_at: datetime
     updated_at: datetime
+
+
+class UserList(BaseModel):
+    users: list[UserPublic]
