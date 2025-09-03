@@ -11,17 +11,16 @@ services:
     ports:
       - "5434:5432"
 
-  feelsocial_app:
+  feelsocial_api:
     container_name: feelsocialapi
-    image: feelsocial_app
-    entrypoint: ./entrypoint.sh
+    image: feelsocial_api
     build: .
     ports:
       - "8000:8000"
     depends_on:
       - feelsocialdb
     environment:
-      DATABASE_URL: postgresql+psycopg://postgres:admin@feelsocialdb:5432/feelsocialdb
+      DATABASE_URL: postgresql+psycopg://postgres:admin@feelsocialdb:5434/feelsocialdb
 
 volumes:
   pgdata:
